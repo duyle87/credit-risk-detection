@@ -1,3 +1,3 @@
-# Fraud_Detection
-A curiosity on how fraud detection and risk analysis led me to start this project//
-Combination of building ETL and classification model using python
+# Credit-risk-detection
+Credit and risk analytics dashboard for LendingClub-style loan portfolio analysis, probability-of-default modeling, vintage performance, concentration risk, and recession stress testing.
+Combination of building ETL and classification model using python.
