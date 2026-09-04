@@ -1,58 +1,63 @@
 # Credit Risk Detection – LendingClub Models
 
-Credit and risk analytics for LendingClub-style loan portfolio analysis, including probability-of-default modeling, underwriting analytics, vintage performance, concentration risk, and recession stress testing.
-
-This repository contains two complementary modeling projects using LendingClub data:
+This repository contains two complementary credit-risk and underwriting modeling projects built with historical LendingClub loan-application data.
 
 1. **Approval Model** – Predicts whether a loan application is accepted (funded) or rejected.  
-2. **Default Model** – Predicts whether a funded loan will default (vs. be fully paid).
+2. **Default Model** – Predicts whether a funded loan will default versus be fully paid.
 
-Both projects share the same underlying data source but answer different business questions and use separate code, documentation, and outputs.
+Both projects use the same LendingClub data source but answer different business questions. Each project has separate documentation, code, modeling outputs, and Tableau reporting artifacts.
 
 ---
 
 ## Projects
 
-### 1. Approval Model (Underwriting Analytics)
+### 1. Approval Model – Underwriting Analytics
 
 - **Folder:** [`approval_model/`](./approval_model)  
-- **Question:** Given applicant and loan-request characteristics, how likely is LendingClub to fund the application?  
-- **Data:** Accepted + rejected applications, restricted to shared columns.  
+- **Business question:** Given applicant and loan-request characteristics, how likely is LendingClub to fund the application?  
+- **Data:** Accepted and rejected applications, limited to fields available in both datasets.  
 - **Model:** Interpretable logistic regression.  
-- **Outputs:** Model metrics, coefficients, ROC curve, scored dataset, Tableau dashboard.
+- **Planned outputs:** Model metrics, coefficients, ROC curve, scored dataset, and Tableau underwriting dashboard.
 
-👉 Start here: [`approval_model/README.md`](./approval_model/README.md)
+[View the Approval Model documentation →](./approval_model/README.md)
 
 ---
 
-### 2. Default Model (Credit Risk Scorecard)
+### 2. Default Model – Credit Risk Scorecard
 
 - **Folder:** [`default_model/`](./default_model)  
-- **Question:** Given a funded loan, how likely is it to default (vs. be fully paid)?  
-- **Data:** Accepted (funded) loans only.  
-- **Model:** Interpretable logistic regression (scorecard-style).  
-- **Outputs:** Model metrics, coefficients, ROC curve, scored dataset, Tableau dashboard.
+- **Business question:** Given a funded loan’s characteristics at origination, how likely is it to default versus be fully paid?  
+- **Data:** Funded LendingClub loans only.  
+- **Model:** Interpretable logistic regression using a scorecard-style approach.  
+- **Planned outputs:** Model metrics, coefficients, ROC curve, scored dataset, and Tableau credit-risk dashboard.
 
-👉 Start here: [`default_model/README.md`](./default_model/README.md)
+[View the Default Model documentation →](./default_model/README.md)
 
 ---
 
-## Shared Data
+## Data Setup
 
-- Raw LendingClub CSVs are stored in:  
-  - `data/accepted.csv` – funded loans  
-  - `data/rejected.csv` – declined applications  
+The full raw LendingClub datasets are excluded from version control because they are several gigabytes in size.
 
-These files are typically large and are ignored by Git (see `.gitignore`). Each project’s scripts load from this `data/` folder.
+Download the historical LendingClub accepted and rejected loan-application files independently, then store them locally using this structure:
+
+```text
+data/
+└── raw/
+    ├── accepted_2007_to_2018Q4.csv
+    └── rejected_2007_to_2018Q4.csv
+```
+
+The `data/` directory is excluded through `.gitignore`. This means the source data remains local and is not uploaded to GitHub.
 
 ---
 
 ## Tech Stack
 
 - **Language:** Python  
-- **Libraries:** pandas, numpy, scikit-learn  
-- **Visualization / Dashboard:** Tableau  
-- **Version Control:** Git + GitHub
+- **Core libraries:** pandas, numpy, scikit-learn  
+- **Interactive reporting:** Tableau  
+- **Version control:** Git and GitHub  
 
 ---
 
@@ -61,12 +66,13 @@ These files are typically large and are ignored by Git (see `.gitignore`). Each 
 ```text
 credit-risk-detection/
 │
-├── README.md                     # This file
+├── README.md
 ├── .gitignore
 │
-├── data/
-│   ├── accepted.csv
-│   └── rejected.csv
+├── data/                         # Local only; excluded from Git
+│   └── raw/
+│       ├── accepted_2007_to_2018Q4.csv
+│       └── rejected_2007_to_2018Q4.csv
 │
 ├── approval_model/
 │   ├── README.md
@@ -87,8 +93,19 @@ credit-risk-detection/
 
 ---
 
+## Project Principles
+
+- Use **separate modeling pipelines** for approval and default prediction.  
+- Use only information available at the relevant decision point to avoid data leakage.  
+- Prioritize interpretable logistic-regression models over black-box approaches.  
+- Evaluate models on held-out data using discrimination and probability-quality metrics.  
+- Translate outputs into interactive Tableau dashboards for business users.  
+- Treat all results as historical analytical demonstrations, not lending recommendations or current LendingClub policy.
+
+---
+
 ## Author
 
 Damien Le  
-[Your LinkedIn / Portfolio Link]  
-[Your Email]
+[LinkedIn](YOUR_LINKEDIN_URL)  
+[Portfolio](YOUR_PORTFOLIO_URL)
