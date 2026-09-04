@@ -1,0 +1,11 @@
+# Raw LendingClub data, archives, and extracted files
+data/
+
+# Generated model outputs
+approval_model/outputs/*
+default_model/outputs/*
+
+# Python and Jupyter temporary files
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
